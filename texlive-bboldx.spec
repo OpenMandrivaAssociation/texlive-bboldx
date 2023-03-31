@@ -1,6 +1,6 @@
 Name:		texlive-bboldx
 Version:	60919
-Release:	1
+Release:	2
 Summary:	Extension of the bbold package with a Blackboard Bold alphabet
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/bboldx
