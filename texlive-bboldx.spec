@@ -1,42 +1,23 @@
-Name:		texlive-bboldx
-Version:	65424
-Release:	1
+%global tl_name bboldx
+%global tl_revision 77682
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	1.032
+Release:	%{tl_revision}.1
 Summary:	Extension of the bbold package with a Blackboard Bold alphabet
 Group:		Publishing
-URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/bboldx
+URL:		https://www.ctan.org/tex-archive/fonts/bboldx
 License:	other-free
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/bboldx.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/bboldx.doc.r%{version}.tar.xz
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/bboldx.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/bboldx.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
+BuildSystem:	texlive
 BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+%texlive_base_requires
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-Extension of bbold to a package with three weights, of which
-the original is considered as light and the additions as
-regular and bold.
+Extension of bbold to a package with three weights, of which the
+original is considered as light and the additions as regular and bold.
 
-%prep
-%autosetup -p1 -c -a1
-
-%build
-
-%install
-rm -rf tlpkg
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -a * %{buildroot}%{_texmfdistdir}
-
-%files
-%{_texmfdistdir}/tex/latex/bboldx
-%{_texmfdistdir}/fonts/type1/public/bboldx
-%{_texmfdistdir}/fonts/tfm/public/bboldx
-%{_texmfdistdir}/fonts/map/dvips/bboldx
-%{_texmfdistdir}/fonts/enc/dvips/bboldx
-%{_texmfdistdir}/fonts/afm/public/bboldx
-%doc %{_texmfdistdir}/doc/fonts/bboldx
-
-%post -p %{_sbindir}/texlive.post
-
-%postun
-[ "$1" -eq 0 ] && %{_sbindir}/texlive.post
